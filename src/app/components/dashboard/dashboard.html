@@ -1,0 +1,31 @@
+<header class="dashboard-header">
+  
+  <div class="header-left">
+    <h1 class="logo-text">Fleet Management</h1>
+    <h5 class="subtitle">Real-time monitoring · 3 intake methods · Paginated</h5>
+  </div>
+
+  <div class="header-right">
+    
+    <div class="stat-card">
+      <span class="stat-number stat-total">{{ stats?.Total || 0 }}</span>
+      <span class="stat-label">TOTAL</span>
+    </div>
+
+    <div class="stat-card">
+      <span class="stat-number stat-critical">{{ stats?.Critical || 0 }}</span>
+      <span class="stat-label">CRITICAL</span>
+    </div>
+
+    <div class="stat-card">
+      <span class="stat-number stat-pending">{{ stats?.Pending || 0 }}</span>
+      <span class="stat-label">PENDING</span>
+    </div>
+
+    <div class="stat-card">
+      <span class="stat-number stat-cleared">{{ stats?.Cleared || 0 }}</span>
+      <span class="stat-label">CLEARED</span>
+    </div>
+
+  </div>
+</header>

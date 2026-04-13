@@ -1,0 +1,422 @@
+
+<div class="table">
+<app-dashboard></app-dashboard>
+<div class="toolbar">
+<div class="search_wrapper">
+
+<span class="search_icon">🔍 </span>
+<input type="text" class="search_input" placeholder="Fleet no. reg , Manufacturer... ">
+
+</div>
+
+<div class="toolbar_actions"> 
+
+    <select class="filter_dropdown">
+
+        <option value="ALL"> ALL Status</option>
+        <option value="CRITICAL"> Critical</option>
+        <option value="PENDING">Pending</option>
+        <option value="CLEARED">Cleared</option>
+    </select>
+
+
+    <select class="filter_dropdown">
+   <option value="ALL ">ALL Types</option>
+   <option value="Truck">Truck</option>
+   <option value="TRAILER">Trailer</option>
+
+
+    </select>
+
+    <button class="btn_outline" (click)=" openImportModal()"> ↑ Bulk Import</button>
+    <button class="btn_primary" (click) = "openAddModal()">+ Add vehicle</button>
+@if(isAssignTechModalOpen) {
+  <div class="modal_overlay" (click)="closeAssignTechModal()">
+    <div class="modal_content" (click)="$event.stopPropagation()">
+      
+      <div class="modal_header">
+        <div class="modal_title_group">
+          <h3>Assign Technician</h3>
+          <p>Assigning to {{ selectedVehicleIds.length }} selected vehicles</p>
+        </div>
+        <button class="btn_close" (click)="closeAssignTechModal()">✕</button>
+      </div>
+
+      <div class="form_group" style="margin-top: 20px;">
+        <label class="form_label">SELECT TECHNICIAN</label>
+        <select class="form_input" [(ngModel)]="bulkTechnicianId">
+          <option [ngValue]="null">Leave Unassigned</option>
+          @for (tech of technicianList; track tech.Id) {
+            <option [ngValue]="tech.Id">{{ tech.FirstName}} {{ tech.LastName }} - {{ tech.Role}} </option>
+          }
+        </select>
+      </div>
+
+      <div class="modal_footer" style="margin-top: 30px;">
+        <button class="btn_cancel" (click)="closeAssignTechModal()">Cancel</button>
+        <button class="btn_primary" (click)="confirmAssignTechnician()">Apply Assignment</button>
+      </div>
+
+    </div>
+  </div>
+}
+
+
+
+</div>
+
+</div>
+
+    
+@if (selectedVehicleIds.length > 0){
+    
+   <div  class ="bulk_action_bar">
+
+    <div class="bulk_left">
+        <span class="selection_count"> {{selectedVehicleIds.length }} vehicle selected  </span>
+         <button class="btn_assign" (click)=" openAssignTechModal()">Assign Technician  </button>
+        <button class="btn_delete" (click)="deleteSelectedVehicles()">Delete</button>
+
+    </div>
+
+<div class="bulk_right">
+    <button class="btn_clear" (click)=" clearSelection() " >Clear</button>
+
+
+
+</div>
+
+
+
+   </div>
+
+}
+
+
+
+<div class ="table_container">
+    <table class="fleet_table">
+
+        <thead>
+       <tr>
+
+    <th><input type="checkbox" class="custom_checkbox"></th>
+     <th>FLEET NO</th>
+     <th>REGISTRATION</th>
+     <th>TYPE</th>
+     <th>MANUFACTURER</th>
+     <th>STATUS</th>
+     <th>LAST SERVICE</th>
+     <th>TECHNICIAN</th>
+      <th>ACTIONS</th>
+       </tr>
+
+        </thead>
+
+        <tbody>
+
+@for (vehicle of vehicleList; track vehicle.Id){
+
+<tr>
+
+<td>
+  <input type="checkbox" class="custom-checkbox" 
+         [checked]="selectedVehicleIds.includes(vehicle.Id)" 
+         (change)="toggleSelection(vehicle.Id, $event)">
+</td>
+<td class="fleet_no">{{ vehicle.FleetNumber }}</td>
+<td> <div class= "Reg"> {{ vehicle.Registration }}</div></td>
+<td class="Type"> {{ vehicle.Type }}</td>
+<td class="manu">
+{{ vehicle.Manufacturer }} <br> <small>{{ vehicle.Model }}</small>
+</td>
+    
+   
+    <td ><span class="Status" [class]="vehicle.Status.toLowerCase()">{{ vehicle.Status }} </span></td>
+    <td class="Last_Service">{{ vehicle.LastServiceDate |  date:'dd MMM yyyy' }}</td>
+
+    
+<td><div><span class="unassigned">Unassigned</span></div></td>
+   
+<td class="Actions">
+    <div class="action_group">
+    <button class="btn_action" (click)="openViewModal(vehicle)">
+        <i class="icon-eye"></i> View
+    </button>
+     
+    <button class="btn_action" (click)="openEditModal(vehicle)">
+        <i class="icon_edit"></i> Edit
+    </button>
+</div>
+</td>
+
+
+</tr>
+
+}
+        </tbody>
+
+
+
+    </table>
+
+
+
+</div>
+
+@if(isImportModalOpen){
+
+<div class="modal_overlay"(click)="closeImportModal()">
+<div class="modal_content" (click) = "$event.stopPropagation()">
+
+    <div class="modal_header">
+        <div class="modal_title_group">
+            <h3> Fleet Intake</h3>
+            <p>Bulk import.System Intergration.API endpoints</p>
+
+
+        </div>
+        <button class= "btn_close" (click)="closeImportModal()">x</button>
+    </div>
+
+
+        <div class="modal_tabs">
+            <button class="tab"> 📁 CSV / Excel</button>
+             <button class="tab"> ☁️ API / Integration</button>
+              <button class="tab"> ⚙️ OEM / ERP</button>
+            
+
+
+        </div>
+
+ 
+    <div class="drop_zone">
+<div class="drop_icon">📥</div>
+
+<h4>Drop your CSV or Excel file here</h4>
+<p class="file_limits" > Supports .csv .xlsx .xls . Max 50 MB </p>
+
+</div>
+
+<div class="required_columns">
+<strong>Required columns</strong>
+<p>fleet_number . registrations . vehicle_type . manufacturer .model. status</p>
+</div>
+<button class="btn_download"> Download Templates</button>
+
+</div>
+
+
+
+</div>
+
+
+
+
+}
+
+@if(isAddModalOpen) {
+  <div class="modal_overlay" (click)="closeAddModal()">
+    <div class="modal_content" (click)="$event.stopPropagation()">
+      
+      <div class="modal_header">
+        <div class="modal_title_group">
+          <h3>Add Vehicle</h3>
+          <p>Manual registration - enter asset details</p>
+        </div>
+        <button class="btn_close" (click)="closeAddModal()">✕</button>
+      </div>
+
+      <div class="form_grid">
+        <div class="form_group">
+          <label class="form_label">FLEET NUMBER</label>
+          <input type="text" class="form_input" [(ngModel)]="newVehicleForm.FleetNumber" placeholder="TRK-099">
+        </div>
+        
+        <div class="form_group">
+          <label class="form_label">REGISTRATION</label>
+          <input type="text" class="form_input" [(ngModel)]="newVehicleForm.Registration" placeholder="GP 123 456">
+        </div>
+
+        <div class="form_group">
+          <label class="form_label">VEHICLE TYPE</label>
+          <select class="form_input" [(ngModel)]="newVehicleForm.Type" >
+            <option>Truck</option>
+            <option>Trailer</option>
+            
+          </select>
+        </div>
+
+        <div class="form_group">
+          <label class="form_label">STATUS</label>
+          <select class="form_input" [(ngModel)]="newVehicleForm.Status">
+            <option>Cleared</option>
+            <option>Pending</option>
+            <option>Critical</option>
+          </select>
+        </div>
+
+        <div class="form_group">
+          <label class="form_label">MANUFACTURER</label>
+          <input type="text" class="form_input" [(ngModel)]="newVehicleForm.Manufacturer" placeholder="Volvo">
+        </div>
+
+        <div class="form_group">
+          <label class="form_label">MODEL</label>
+          <input type="text" class="form_input" [(ngModel)]="newVehicleForm.Model" placeholder="FH16">
+        </div>
+
+        <div class="form_group.full_width">
+          <label class="form_label">LAST MAINTENANCE DATE</label>
+          <input type="date" class="form_input" [(ngModel)]="newVehicleForm.LastServiceDate">
+        </div>
+      </div>
+
+      <div class="modal_footer">
+        <button class="btn_cancel" (click)="closeAddModal()">Cancel</button>
+        <button class="btn_primary" (click)="registerVehicle()">Register Vehicle</button>
+      </div>
+
+    </div>
+  </div>
+}
+
+
+
+
+@if(isViewModalOpen && selectedVehicleToView) {
+  <div class="modal_overlay" (click)="closeViewModal()">
+    <div class="modal_content view-modal-content" (click)="$event.stopPropagation()">
+      
+      <div class="modal_header">
+        <div class="modal_title_group">
+          <h3>Vehicle — {{ selectedVehicleToView.FleetNumber }}</h3>
+          <p>{{ selectedVehicleToView.Manufacturer }} {{ selectedVehicleToView.Model }} - {{ selectedVehicleToView.Registration }}</p>
+        </div>
+        <button class="btn_close" (click)="closeViewModal()">✕</button>
+      </div>
+
+      <div class="details-grid">
+        
+        <div class="detail-box">
+          <span class="detail-label">FLEET NO.</span>
+          <span class="detail-value text-accent">{{ selectedVehicleToView.FleetNumber }}</span> 
+        </div>
+
+        <div class="detail-box">
+          <span class="detail-label">REGISTRATION</span>
+          <span class="detail-value">{{ selectedVehicleToView.Registration }}</span>
+        </div>
+
+        <div class="detail-box">
+          <span class="detail-label">TYPE</span>
+          <span class="detail-value">{{ selectedVehicleToView.Type }}</span>
+        </div>
+
+        <div class="detail-box">
+          <span class="detail-label">STATUS</span>
+          <span class="detail-value">{{ selectedVehicleToView.Status }}</span>
+        </div>
+
+        <div class="detail-box">
+          <span class="detail-label">MANUFACTURER</span>
+          <span class="detail-value">{{ selectedVehicleToView.Manufacturer }}</span>
+        </div>
+
+        <div class="detail-box">
+          <span class="detail-label">MODEL</span>
+          <span class="detail-value">{{ selectedVehicleToView.Model }}</span>
+        </div>
+
+        <div class="detail-box">
+          <span class="detail-label">LAST SERVICE</span>
+          <span class="detail-value">{{ selectedVehicleToView.LastServiceDate | date:'dd MMMM yyyy' }}</span>
+        </div>
+
+        <div class="detail-box">
+          <span class="detail-label">TECHNICIAN</span>
+          <span class="detail-value">
+            @if(selectedVehicleToView.Technician) {
+              {{ selectedVehicleToView.Technician.FirstName }} {{ selectedVehicleToView.Technician.LastName }} ({{ selectedVehicleToView.Technician.Role }})
+            } @else {
+              <span style="color: gray;">Unassigned</span>
+            }
+          </span>
+        </div>
+
+      </div>
+
+      <div class="modal_footer">
+        <button class="btn_cancel" (click)="closeViewModal()">Close</button>
+        <button class="btn_primary" (click)="openEditModal(selectedVehicleToView)">Edit Vehicle</button> </div>
+
+    </div>
+  </div>
+
+
+}
+
+  
+@if(isEditModalOpen) {
+  <div class="modal_overlay" (click)="closeEditModal()">
+    <div class="modal_content" (click)="$event.stopPropagation()">
+      
+      <div class="modal_header">
+        <div class="modal_title_group">
+          <h3>Edit — {{ editVehicleForm.FleetNumber }}</h3>
+          <p>Update vehicle details</p>
+        </div>
+        <button class="btn_close" (click)="closeEditModal()">✕</button>
+      </div>
+
+      <div class="form_grid">
+        
+        <div class="form_group">
+          <label class="form_label">FLEET NUMBER</label>
+          <input type="text" class="form_input" [(ngModel)]="editVehicleForm.FleetNumber">
+        </div>
+
+        <div class="form_group">
+          <label class="form_label">REGISTRATION</label>
+          <input type="text" class="form_input" [(ngModel)]="editVehicleForm.Registration">
+        </div>
+
+        <div class="form_group">
+          <label class="form_label">TYPE</label>
+          <select class="form_input" [(ngModel)]="editVehicleForm.Type">
+            <option value="Truck">Truck</option>
+            <option value="Trailer">Trailer</option>
+          </select>
+        </div>
+
+        <div class="form_group">
+          <label class="form_label">STATUS</label>
+          <select class="form_input" [(ngModel)]="editVehicleForm.Status">
+            <option value="Cleared">Cleared</option>
+            <option value="Pending">Pending</option>
+            <option value="Critical">Critical</option>
+          </select>
+        </div>
+
+        <div class="form_group">
+          <label class="form_label">MANUFACTURER</label>
+          <input type="text" class="form_input" [(ngModel)]="editVehicleForm.Manufacturer">
+        </div>
+
+        <div class="form_group">
+          <label class="form_label">MODEL</label>
+          <input type="text" class="form_input" [(ngModel)]="editVehicleForm.Model">
+        </div>
+
+      </div>
+
+      <div class="modal_footer">
+        <button class="btn_cancel" (click)="closeEditModal()">Cancel</button>
+        <button class="btn_primary" (click)="saveEditedVehicle()">Save Changes</button>
+      </div>
+
+    </div>
+  </div>
+}
+
+</div>

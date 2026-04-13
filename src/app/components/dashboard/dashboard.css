@@ -1,0 +1,67 @@
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding-bottom: 20px;
+   }
+
+.logo-text {
+  color: #081515; 
+  font-size: 28px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+
+  font-style: bold;
+}
+
+.subtitle {
+  
+  color: #08090a;
+  font-size: 12px;
+  margin: 0;
+}
+
+
+.header-right {
+  display: flex;
+  gap: 15px;
+
+}
+
+.header-left{
+  margin-left: 15px;
+}
+
+.stat-card {
+  background-color: #0d1a24; 
+  border: 1px solid #1a3644;
+  border-radius: 10px;
+  min-width: 80px;
+  padding: 12px 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat-label {
+  color: #6b8292;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-top: 5px;
+}
+
+.stat-number {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+/* Individual Stat Colors matching your screenshot */
+.stat-total { color: #00d2a0; }    /* Cyan/Green */
+.stat-critical { color: #ff4d4d; } /* Red */
+.stat-pending { color: #ffb84d; }  /* Orange */
+.stat-cleared { color: #00d2a0; }  /* Cyan/Green */

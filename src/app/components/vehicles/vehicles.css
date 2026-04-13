@@ -1,0 +1,651 @@
+.table{
+    background-color: rgba(12, 12, 12, 0.612);
+
+        padding: 20px;
+    min-height: 100vh;
+}
+.table_container{
+
+
+ background-color: rgb(155, 154, 154);
+ 
+ border-radius: 13px;
+ border: 1px solid #1f2937 ;
+ overflow-x: auto;
+padding: 1px;
+margin-left: 10px;
+margin-right: 10px;
+
+}
+
+.fleet_table{
+
+width: 100%;
+text-align: left;
+border-collapse: collapse;
+
+font-size: 0.75rem;
+}
+
+.fleet_table th{
+    padding: 16px;
+  background-color: #0b1923;
+    color: rgb(239, 235, 235);
+    font-weight:800 ;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid #1f2937;
+    cursor: pointer;
+    
+
+}
+
+.fleet_table td {
+
+    padding: 14px;
+    border-bottom:  1px solid #1f2937;
+    vertical-align: middle;
+
+}
+
+.fleet_table tbody tr:hover{
+
+   background-color: rgb(234, 235, 236);
+}
+
+.fleet_no{
+
+color: #0de894;
+font-weight: 600;
+
+}
+
+.Reg{
+
+    background: solid transparent;
+    background-color: #848585;
+    border: 1px solid#0de894;
+    padding: 10px 10px;
+    border-radius: 4px;
+   font-weight: bolder;
+   display: inline-block;
+   align-items: center;
+   justify-content: center;
+   color: #000308;
+   display: inline-flex;
+   align-items: center;
+}
+
+
+
+.manu{
+ color: #030d1f; 
+    
+    font-weight: 700;
+    align-items: center;
+    justify-content: center;
+    margin-right: 19px;
+}
+
+
+
+.Status {
+
+padding : 4px 10px;
+border-radius: 999px;
+font-weight: 600;
+font-size: 0.75;
+display: inline-flex;
+align-items: center;
+gap: 6px;
+border: 1px solid transparent;
+align-items: center;
+justify-content: center;
+
+
+
+}
+
+.Status.critical{
+
+
+    background-color: rgba(178, 25, 25, 0.2);
+  color: #f87171;
+  border-color: rgba(248, 113, 113, 0.2);
+}
+.Status.cleared {
+  background-color: rgba(6, 78, 59, 0.2);
+  color: #34d399;
+  border-color: rgba(52, 211, 153, 0.2);
+}
+
+.Status.pending{
+ background-color: rgba(70, 78, 6, 0.2);
+  color: #c3de13;
+  border-color: rgba(158, 211, 52, 0.2);
+}
+
+
+
+.tech_card{
+    display : flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tech_FirstName{
+
+    color: #e5e7eb;
+
+}
+.tech_role{
+    color: #6b7280;
+    font-size: 0.75rem;
+}
+
+.Unassigned{
+    color: #6b7280;
+    font-style: italic;
+}
+
+/* Action Buttons */
+.Actions {
+ 
+
+  vertical-align: middle;
+}
+
+.actions_group{
+      display: inline-flex;
+  align-items: center;
+ 
+  gap: 12px;
+}
+.btn_action {
+
+    display: inline-flex;
+  background-color: transparent;
+  border: 1px solid #374151;
+  color: #030d1f;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  transition: all 0.2s;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  margin-bottom: 0;
+ margin-right: 8px;
+}
+
+.btn_action:hover {
+  background-color: #1f2937;
+  border-color: #00ffcc;
+}
+
+/* TOOL BAR*/
+
+.toolbar {
+
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 10px;
+gap: 10px;
+
+
+}
+
+.toolbar_actions{
+
+    align-items: center;
+    display: flex;
+}
+
+
+.search_wrapper{
+
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+   width: 30%;
+    border: 1px solid  #374151;
+    border-radius: 10px;
+    color: #00ffcc;
+    padding: 8px 12px;
+   margin-top: 10px;
+    box-sizing :border-boz;
+    background: #94cabf;
+}
+
+.search_icon{
+
+    font-size: 0.95rem;
+    margin-right: 8px;
+    opacity: 0.6;
+}
+
+.search_input{
+
+    background: transparent;
+    border: none;
+    color:  #000000;
+    font-size: 0.85rem;
+    width: 100%;
+    outline: none;
+   margin-top: 0;
+    
+}
+
+.search_wrapper:hover{
+   
+    border-color: rgb(0, 255, 115);
+}
+.toolbar_actions{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap:12px
+}
+
+.filter_dropdown{
+
+    
+    color:  white;
+    border: 1px solid #374151;
+    background-color: #030d1f;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+   outline: none;
+   appearance: auto;
+   box-sizing: border-box;
+   margin-top: 10px;
+}
+
+.filter_dropdown:hover{
+
+    border-color: rgb(0, 255, 115);
+}
+
+.btn_outline{
+   
+    background: transparent;
+    color:  #000000;
+    border:1px solid #000000;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.2s;
+    margin-top: 14px;
+}
+
+.btn_outline:hover{
+background-color: #b3bccd;
+ border-color: rgb(0, 255, 115);
+}
+
+.btn_primary{
+
+background-color:#00d2a0;
+border: none;
+border-radius: 6px;
+padding: 8px 12px ;
+font-size:0.85rem;
+font-weight: bold;
+cursor: pointer;
+transition: transform 0.1s , box-shadow 0.2s;
+margin-top: 14px;
+}
+
+.btn_primary:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,255,204,0.2);
+}
+
+.btn_primary:active { 
+  transform: translateY(1px); 
+}
+
+/* MODAL STYLES */
+
+.modal_overlay {
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    background-filter : blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index :1000;
+
+}
+
+.modal_content{
+background-color:#0d1117;
+border: 1px solid #1f2937;
+border-radius: 12px;
+color: rgb(167, 165, 165);
+width: 600px;
+max-width: 90%;
+padding: 24px;
+box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+
+}
+
+.modal_header{
+    display:flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.modal_title_group h3{
+    margin: 0 0 4px 0;
+    font-size: 1.25rem;
+    color: white;
+}
+.modal_title_group p {
+margin: 0;
+font-size: 0.75rem;
+color: rgb(167, 165, 165);;
+
+}
+
+.btn_close {
+
+    background: transparent;
+    border: none;
+    color :#6b7280;
+    font-size: 1.2rem;
+    cursor:pointer
+}
+
+.btn_close:hover{
+    color: red;
+}
+
+.modal_tabs{
+
+    display:flex;
+    flex-direction: row;
+    border-bottom: none;
+    gap:8px;
+    margin-bottom: 24px;
+}
+
+.tab{
+background: transparent;
+border: none;
+color:white;
+padding:10px 20px;
+font-size: 0.85rem;
+cursor: pointer;
+text-align: left;
+border-left: 2px solid transparent;
+
+
+}
+
+.tab:hover{
+    border-bottom: 1px solid #00ffcc;
+}
+
+.drop_zone{
+
+border: 1px dashed #374151;
+border-radius: 8px;
+padding: 40px 20px;
+text-align: center;
+background-color: #111827;
+margin-bottom: 24px;
+cursor: pointer;
+transition: backrgound-color 0.2s;
+color: #6b7280;
+
+}
+
+
+.file_limits {
+    font-size: 0.85rem;
+    color :#6b7280;
+}
+
+.drop_zone:hover{
+
+
+    background-color: #1f2937;
+}
+
+.required_columns {
+
+    background-color: #111827;
+    border: 1px solid #1f2937;
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 24px;
+    font-size: 0.75rem;
+}
+
+.required_columns strong {
+
+    color: #e5e7eb;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.required_columns p {
+    margin: 0;
+    color :#6b7280;
+}
+
+.btn_download{
+
+
+    width: 100%;
+   background-color: transparent;
+   border: 1px solid #374151;
+   color: white;
+   padding: 6px;
+   border-radius: 6px;
+   font-weight : bold;
+   cursor: pointer;
+   transition: background-color 0.2s;
+   font-size: 0.85rem ;
+}
+
+.btn_download:hover{
+background-color: #1f2937;
+}
+
+/* Add vehicle section */
+
+.form_grid{
+
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 16px;
+margin-bottom: 24px;
+
+}
+
+.form_group{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form_group.full_width{
+    grid-column: span 2;
+}
+
+.form_label{
+    font-size: 0.7rem;
+color: white;
+font-weight: 600;
+
+}
+
+.form_input{
+
+    background-color: #111827;
+    border: 1px solid #374151;
+    
+    color: #f4f5f8;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    outline:none;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+
+.form_input:focus{
+    border-color: #00ffcc;;
+}
+
+.form-input::placeholder {
+  color: #4b5563;}
+
+  .form_input [type="date"]::-webkit-calendar-picker-indicator{
+
+    filter: invert(1);
+    opacity: 0.6;
+    cursor: pointer;
+
+
+  }
+
+  .modal_footer{
+
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    border-top: 1px solid #1f2937;
+    padding-top: 20px;
+    margin-top: 10px;
+  }
+
+.btn_cancel{
+
+background-color: transparent;
+color: #e5e7eb;
+border: 1px solid #374151;
+padding: 8px 12px;
+border-radius :6px;
+font-size: 0.85rem;
+font-weight: 600;
+cursor: pointer;
+margin-top: 10px;
+
+
+
+  }
+
+  .btn_cancel:hover{
+    background-color: #1f2937;
+  }
+
+  .btn_primary{
+    color: #030d1f;
+  }
+/* Top of the table assign and clear button */
+
+.bulk_action_bar {
+    display: flex;
+    justify-content:   space-between;
+    align-items: center;
+    background-color: #0b1923;
+    border: 1px solid #1a3644;
+    border-radius: 8px;
+    padding: 8px 10px;
+    margin-left: 10px;
+    margin: 10px;
+    
+    
+}
+
+.bulk_left{
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+.selection_count {
+    color: #00d2a0 ;
+    font-weight: bold;
+}
+
+.btn_assign , .btn_clear {
+    background-color: transparent;
+    border : 1px solid #1a3644;
+    color: white;
+    padding : 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn_delete {
+
+    background-color: rgb(235, 180, 180);
+    color: red;
+    border: 1px solid #ff4d4d;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+
+
+}
+
+/*View */
+
+/* Makes the View Modal slightly wider to fit the two columns comfortably */
+.view-modal-content {
+  width: 600px; 
+}
+
+/* The Grid Layout */
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 equal columns */
+  gap: 15px; /* Space between boxes */
+  margin-top: 25px;
+  margin-bottom: 30px;
+}
+
+/* The Individual Data Boxes */
+.detail-box {
+  background-color: transparent;
+  border: 1px solid #1a3644; /* Dark blue/grey border */
+  border-radius: 8px;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+/* The tiny gray labels (FLEET NO, REGISTRATION, etc.) */
+.detail-label {
+  font-size: 10px;
+  color: #6b8292;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* The actual white text data */
+.detail-value {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* For the green TRK-001 text */
+.text-accent {
+  color: #00d2a0;
+}
